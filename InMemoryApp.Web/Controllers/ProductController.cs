@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using InMemoryApp.Web.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 
@@ -42,6 +43,20 @@ namespace InMemoryApp.Web.Controllers
             ViewBag.ProductName = productName;
             ViewBag.CallbackMessage = callbackMessage;
 
+            //memory cache ile class objeleride cachelenebilir
+            Product product = new Product
+            {
+                Id = 1,
+                Name = "Laptop",
+                Price = 1500.00m
+            };
+
+            _memoryCache.Set<Product>("Product", product);
+
+            ViewBag.Product = _memoryCache.Get<Product>("Product");
+        
+
+
             return View();
 
 
@@ -73,14 +88,6 @@ namespace InMemoryApp.Web.Controllers
 
         }
 
-
-            //cache de bişey alamazsa oluşturur
-            //_memoryCache.GetOrCreate<string>("ProductName", entry =>
-            //{
-            //    //cache de 10 sn tutacak
-            //    entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(10);
-            //    return "Macbook";
-            //});
         }
 
     }
