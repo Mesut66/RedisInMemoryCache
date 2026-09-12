@@ -52,5 +52,23 @@ namespace IDistributedCacheRedisApp.web.Controllers
 
             return View();
         }
+
+        public IActionResult ImageCache()
+        {
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/car.jpg");
+
+            byte[] imageByte = System.IO.File.ReadAllBytes(path);
+
+            _distributedCache.Set("image", imageByte);
+            return View();
+        }
+
+        public IActionResult ImageUrl()
+        {
+            byte[] bytes = _distributedCache.Get("image");
+
+
+            return File(bytes, "image/jpeg");
+        }
     }
 }
