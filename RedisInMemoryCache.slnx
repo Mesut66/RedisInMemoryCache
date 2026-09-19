@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="IDistributedCacheRedisApp.web/IDistributedCacheRedisApp.web.csproj" Id="e7c0ae10-378d-49d5-9624-1fb4d357d23f" />
   <Project Path="InMemoryApp.Web/InMemoryApp.Web.csproj" />
+  <Project Path="RedisAPI.Web/RedisAPI.Web.csproj" Id="04f73834-c021-440c-a959-fac20ceb0e9d" />
 </Solution>
